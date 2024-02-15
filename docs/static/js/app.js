@@ -3,6 +3,9 @@ const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/
 let metadata = [];
 let samples = [];
 
+init();
+//getData();
+
 function init() {
     // Fetch the JSON data and console log it
     d3.json(url).then(function(data) {
@@ -27,7 +30,28 @@ function init() {
               .text(data.names[j]);
         }
     });
+
+    // Assuming your dropdown has an ID, for example, "myDropdown"
+// var dropdownID = 'selDataset';
+
+// // Use Plotly.update to set the selected value of the dropdown
+// Plotly.update('well', {
+//   'updatemenus': [{
+//     'x': 0.1,
+//     'y': 1.15,
+//     'xanchor': 'left',
+//     'yanchor': 'top',
+//     'buttons': [{
+//       'label': 'First Item',
+//       'method': 'relayout',
+//       'args': ['updatemenus.' + dropdownID + '.active', 0]  // Set the active index to 0 (first item)
+//     }]
+//   }]
+// });
+
 }
+
+
 
 
 
@@ -61,7 +85,7 @@ function getData() {
       otu_id: otu_ids_ids[0][j],
       otu_label: otu_ids[0][j],
       value : sample_values[0][j],
-      label: otu_labels[0][j].replace(";","<br>")
+      label: otu_labels[0][j]
     };
     samplesets.push(sampleset);
   };
@@ -74,12 +98,10 @@ function getData() {
 
   //console.log(sortedsliced)
 
-
-
   let barData = [{
     x: sortedsliced.map(item => item.value),
     y: sortedsliced.map(item => item.otu_label),
-    hovertext: sortedsliced.map(item => item.label),
+    hovertext: sortedsliced.map(item => item.label.replace(";","<br>")),
     type: 'bar',
     orientation: 'h'
   }];
@@ -94,8 +116,7 @@ function getData() {
   let metaKeys = Object.keys(personMetadata[0]);
   let metaValues = Object.values(personMetadata[0]);
  
-  console.log(metaKeys)
-  console.log(metaValues)
+  
   //clear out prior values
   d3.select("#sample-metadata").selectAll("p").remove();
   
@@ -181,7 +202,7 @@ function updatePlotly(newdata) {
 }
 
 
-function selectedSamples(sample){
+function selectedSamples(sample, id){
   return sample.id == d3.select("#selDataset").property("value");
 }
 
@@ -190,4 +211,3 @@ function selectedMetadata(metadata){
 }
 
 //initialize
-init();
