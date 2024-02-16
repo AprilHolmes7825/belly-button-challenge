@@ -30,25 +30,6 @@ function init() {
               .text(data.names[j]);
         }
     });
-
-    // Assuming your dropdown has an ID, for example, "myDropdown"
-// var dropdownID = 'selDataset';
-
-// // Use Plotly.update to set the selected value of the dropdown
-// Plotly.update('well', {
-//   'updatemenus': [{
-//     'x': 0.1,
-//     'y': 1.15,
-//     'xanchor': 'left',
-//     'yanchor': 'top',
-//     'buttons': [{
-//       'label': 'First Item',
-//       'method': 'relayout',
-//       'args': ['updatemenus.' + dropdownID + '.active', 0]  // Set the active index to 0 (first item)
-//     }]
-//   }]
-// });
-
 }
 
 
