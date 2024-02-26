@@ -4,7 +4,7 @@ let metadata = [];
 let samples = [];
 
 init();
-//getData();
+
 
 function init() {
     // Fetch the JSON data and console log it
@@ -29,6 +29,8 @@ function init() {
               .attr('value', data.names[j])
               .text(data.names[j]);
         }
+
+      getData();
     });
 }
 
